@@ -9,8 +9,15 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: "#2563eb",
-        secondary: "#f59e0b",
+        primary: "#000000",
+        secondary: "#8B7355",
+        accent: "#C9B99B",
+        dark: "#1a1a1a",
+        light: "#f5f5f5",
+      },
+      fontFamily: {
+        serif: ['Cormorant Garamond', 'serif'],
+        sans: ['Montserrat', 'sans-serif'],
       },
       keyframes: {
         slideIn: {

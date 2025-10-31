@@ -122,37 +122,38 @@ export default function TripPlanner({ visible, onClose }: TripPlannerProps) {
 
       {/* Questionnaire Panel */}
       <div className={`fixed top-0 h-screen w-[380px] bg-white shadow-2xl transition-all duration-400 z-[1000] flex flex-col ${visible ? 'left-0' : '-left-[400px]'} max-md:w-full max-md:${visible ? 'left-0' : '-left-full'}`}>
-        <div className="bg-gradient-to-br from-blue-600 to-purple-600 text-white p-8 relative">
+        <div className="bg-dark text-white p-8 relative border-b border-gray-700">
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 text-white hover:bg-white hover:bg-opacity-20 rounded-full p-2 transition-all"
+            className="absolute top-6 right-6 text-white hover:text-secondary transition-all"
             aria-label="Close"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
-          <h3 className="text-2xl mb-2.5">Custom Trip Planner</h3>
-          <p className="text-[0.95rem] opacity-95">Let&apos;s design your perfect journey together</p>
+          <p className="elegant-text text-secondary mb-3">Bespoke Journey</p>
+          <h3 className="text-3xl font-serif font-light mb-2">Plan Your Experience</h3>
+          <p className="text-sm font-light opacity-80 tracking-wide">Tell us about your ideal journey</p>
         </div>
 
         <div className="flex-1 overflow-y-auto p-6">
           {/* Progress bar */}
-          <div className="bg-gray-200 h-1.5 rounded-full overflow-hidden mb-5">
+          <div className="bg-gray-200 h-0.5 overflow-hidden mb-5">
             <div
-              className="bg-gradient-to-r from-blue-600 to-purple-600 h-full transition-all duration-300"
+              className="bg-secondary h-full transition-all duration-300"
               style={{ width: `${progress}%` }}
             />
           </div>
-          <div className="text-sm text-gray-600 text-center mt-2">
-            {currentQuestion <= 6 ? `Question ${currentQuestion} of 6` : 'Complete!'}
+          <div className="elegant-text text-gray-500 text-center mt-2">
+            {currentQuestion <= 6 ? `Step ${currentQuestion} of 6` : 'Complete'}
           </div>
 
           {/* Question 1: Travel Type */}
           {currentQuestion === 1 && (
             <div className="animate-slideIn">
-              <h4 className="text-xl text-gray-800 mb-5 font-semibold">What type of travel experience are you seeking?</h4>
-              <p className="text-sm text-gray-600 mb-6">Choose the option that best matches your ideal trip</p>
+              <h4 className="text-2xl font-serif font-light text-gray-900 mb-5">What type of travel experience are you seeking?</h4>
+              <p className="text-sm text-gray-600 font-light mb-6">Choose the option that best matches your ideal trip</p>
               <div className="grid grid-cols-1 gap-3 mb-6">
                 {[
                   { value: 'adventure', icon: '🏔️', label: 'Adventure & Outdoor Activities' },
@@ -163,7 +164,7 @@ export default function TripPlanner({ visible, onClose }: TripPlannerProps) {
                 ].map(option => (
                   <button
                     key={option.value}
-                    className={`bg-gray-50 border-2 ${selectedOption[1] === option.value ? 'border-blue-600 bg-gradient-to-br from-blue-600 to-purple-600 text-white' : 'border-gray-200'} p-4 rounded-xl cursor-pointer transition-all duration-200 text-left flex items-center gap-3 hover:border-blue-600 hover:bg-blue-50 hover:-translate-y-0.5 hover:shadow-lg`}
+                    className={`border ${selectedOption[1] === option.value ? 'border-black bg-black text-white' : 'border-gray-300 bg-white'} p-4 cursor-pointer transition-all duration-300 text-left flex items-center gap-3 hover:border-black font-light`}
                     onClick={() => selectOption(1, option.value)}
                   >
                     <span className="text-2xl w-7 text-center">{option.icon}</span>
@@ -173,7 +174,7 @@ export default function TripPlanner({ visible, onClose }: TripPlannerProps) {
               </div>
               <div className="flex gap-3 mt-5">
                 <button
-                  className="flex-[2] py-3.5 px-6 rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 text-white font-semibold transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                  className="btn-luxury flex-[2] disabled:opacity-50 disabled:cursor-not-allowed"
                   disabled={!selectedOption[1]}
                   onClick={() => goToQuestion(2)}
                 >

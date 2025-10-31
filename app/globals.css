@@ -1,15 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body {
-  @apply bg-gray-50 text-gray-900;
+  @apply bg-white text-gray-900;
+  font-family: 'Montserrat', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500;
+  letter-spacing: 0.02em;
 }
 
 .hero-gradient {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.3) 100%);
 }
 
 .card-hover {
-  @apply transition-all duration-300 hover:shadow-2xl hover:-translate-y-2;
+  @apply transition-all duration-500 hover:shadow-xl;
+}
+
+.luxury-border {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.elegant-text {
+  @apply tracking-wide uppercase text-xs font-medium;
+  letter-spacing: 0.15em;
+}
+
+.btn-luxury {
+  @apply px-8 py-3 border border-black bg-black text-white transition-all duration-300 hover:bg-white hover:text-black font-light tracking-widest uppercase text-xs;
+}
+
+.btn-luxury-outline {
+  @apply px-8 py-3 border border-black bg-transparent text-black transition-all duration-300 hover:bg-black hover:text-white font-light tracking-widest uppercase text-xs;
 }
