@@ -156,18 +156,17 @@ export default function TripPlanner({ visible, onClose }: TripPlannerProps) {
               <p className="text-sm text-gray-600 font-light mb-6">Choose the option that best matches your ideal trip</p>
               <div className="grid grid-cols-1 gap-3 mb-6">
                 {[
-                  { value: 'adventure', icon: '🏔️', label: 'Adventure & Outdoor Activities' },
-                  { value: 'luxury', icon: '✨', label: 'Luxury & Relaxation' },
-                  { value: 'cultural', icon: '🏛️', label: 'Cultural Immersion' },
-                  { value: 'family', icon: '👨‍👩‍👧‍👦', label: 'Family-Friendly' },
-                  { value: 'romantic', icon: '💕', label: 'Romantic Getaway' }
+                  { value: 'adventure', label: 'Adventure & Outdoor Activities' },
+                  { value: 'luxury', label: 'Luxury & Relaxation' },
+                  { value: 'cultural', label: 'Cultural Immersion' },
+                  { value: 'family', label: 'Family-Friendly' },
+                  { value: 'romantic', label: 'Romantic Getaway' }
                 ].map(option => (
                   <button
                     key={option.value}
-                    className={`border ${selectedOption[1] === option.value ? 'border-black bg-black text-white' : 'border-gray-300 bg-white'} p-4 cursor-pointer transition-all duration-300 text-left flex items-center gap-3 hover:border-black font-light`}
+                    className={`border ${selectedOption[1] === option.value ? 'border-black bg-black text-white' : 'border-gray-300 bg-white'} p-4 cursor-pointer transition-all duration-300 text-left hover:border-black font-light`}
                     onClick={() => selectOption(1, option.value)}
                   >
-                    <span className="text-2xl w-7 text-center">{option.icon}</span>
                     <span>{option.label}</span>
                   </button>
                 ))}
@@ -187,35 +186,34 @@ export default function TripPlanner({ visible, onClose }: TripPlannerProps) {
           {/* Question 2: Destination Preference */}
           {currentQuestion === 2 && (
             <div className="animate-slideIn">
-              <h4 className="text-xl text-gray-800 mb-5 font-semibold">Where would you like to go?</h4>
-              <p className="text-sm text-gray-600 mb-6">Select your preferred destination type</p>
+              <h4 className="text-2xl font-serif font-light text-gray-900 mb-5">Where would you like to go?</h4>
+              <p className="text-sm text-gray-600 font-light mb-6">Select your preferred destination type</p>
               <div className="grid grid-cols-1 gap-3 mb-6">
                 {[
-                  { value: 'beach', icon: '🏖️', label: 'Beach & Islands' },
-                  { value: 'mountains', icon: '⛰️', label: 'Mountains & Nature' },
-                  { value: 'city', icon: '🌆', label: 'Cities & Urban' },
-                  { value: 'countryside', icon: '🌾', label: 'Countryside & Villages' },
-                  { value: 'mixed', icon: '🗺️', label: 'Mix of Everything' }
+                  { value: 'beach', label: 'Beach & Islands' },
+                  { value: 'mountains', label: 'Mountains & Nature' },
+                  { value: 'city', label: 'Cities & Urban' },
+                  { value: 'countryside', label: 'Countryside & Villages' },
+                  { value: 'mixed', label: 'Mix of Everything' }
                 ].map(option => (
                   <button
                     key={option.value}
-                    className={`bg-gray-50 border-2 ${selectedOption[2] === option.value ? 'border-blue-600 bg-gradient-to-br from-blue-600 to-purple-600 text-white' : 'border-gray-200'} p-4 rounded-xl cursor-pointer transition-all duration-200 text-left flex items-center gap-3 hover:border-blue-600 hover:bg-blue-50 hover:-translate-y-0.5 hover:shadow-lg`}
+                    className={`border ${selectedOption[2] === option.value ? 'border-black bg-black text-white' : 'border-gray-300 bg-white'} p-4 cursor-pointer transition-all duration-300 text-left hover:border-black font-light`}
                     onClick={() => selectOption(2, option.value)}
                   >
-                    <span className="text-2xl w-7 text-center">{option.icon}</span>
                     <span>{option.label}</span>
                   </button>
                 ))}
               </div>
               <div className="flex gap-3 mt-5">
                 <button
-                  className="flex-1 py-3.5 px-6 rounded-lg bg-gray-200 text-gray-700 font-semibold transition-all duration-200 hover:bg-gray-300"
+                  className="btn-luxury-outline flex-1"
                   onClick={() => goToQuestion(1)}
                 >
                   Back
                 </button>
                 <button
-                  className="flex-[2] py-3.5 px-6 rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 text-white font-semibold transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                  className="btn-luxury flex-[2] disabled:opacity-50 disabled:cursor-not-allowed"
                   disabled={!selectedOption[2]}
                   onClick={() => goToQuestion(3)}
                 >
@@ -228,34 +226,33 @@ export default function TripPlanner({ visible, onClose }: TripPlannerProps) {
           {/* Question 3: Duration */}
           {currentQuestion === 3 && (
             <div className="animate-slideIn">
-              <h4 className="text-xl text-gray-800 mb-5 font-semibold">How long will you be traveling?</h4>
-              <p className="text-sm text-gray-600 mb-6">Choose your preferred trip length</p>
+              <h4 className="text-2xl font-serif font-light text-gray-900 mb-5">How long will you be traveling?</h4>
+              <p className="text-sm text-gray-600 font-light mb-6">Choose your preferred trip length</p>
               <div className="grid grid-cols-1 gap-3 mb-6">
                 {[
-                  { value: 'weekend', icon: '📅', label: 'Weekend (2-3 days)' },
-                  { value: 'week', icon: '🗓️', label: 'One Week (5-7 days)' },
-                  { value: 'twoweeks', icon: '📆', label: 'Two Weeks (10-14 days)' },
-                  { value: 'extended', icon: '🌍', label: 'Extended (15+ days)' }
+                  { value: 'weekend', label: 'Weekend (2-3 days)' },
+                  { value: 'week', label: 'One Week (5-7 days)' },
+                  { value: 'twoweeks', label: 'Two Weeks (10-14 days)' },
+                  { value: 'extended', label: 'Extended (15+ days)' }
                 ].map(option => (
                   <button
                     key={option.value}
-                    className={`bg-gray-50 border-2 ${selectedOption[3] === option.value ? 'border-blue-600 bg-gradient-to-br from-blue-600 to-purple-600 text-white' : 'border-gray-200'} p-4 rounded-xl cursor-pointer transition-all duration-200 text-left flex items-center gap-3 hover:border-blue-600 hover:bg-blue-50 hover:-translate-y-0.5 hover:shadow-lg`}
+                    className={`border ${selectedOption[3] === option.value ? 'border-black bg-black text-white' : 'border-gray-300 bg-white'} p-4 cursor-pointer transition-all duration-300 text-left hover:border-black font-light`}
                     onClick={() => selectOption(3, option.value)}
                   >
-                    <span className="text-2xl w-7 text-center">{option.icon}</span>
                     <span>{option.label}</span>
                   </button>
                 ))}
               </div>
               <div className="flex gap-3 mt-5">
                 <button
-                  className="flex-1 py-3.5 px-6 rounded-lg bg-gray-200 text-gray-700 font-semibold transition-all duration-200 hover:bg-gray-300"
+                  className="btn-luxury-outline flex-1"
                   onClick={() => goToQuestion(2)}
                 >
                   Back
                 </button>
                 <button
-                  className="flex-[2] py-3.5 px-6 rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 text-white font-semibold transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                  className="btn-luxury flex-[2] disabled:opacity-50 disabled:cursor-not-allowed"
                   disabled={!selectedOption[3]}
                   onClick={() => goToQuestion(4)}
                 >
@@ -268,34 +265,33 @@ export default function TripPlanner({ visible, onClose }: TripPlannerProps) {
           {/* Question 4: Budget */}
           {currentQuestion === 4 && (
             <div className="animate-slideIn">
-              <h4 className="text-xl text-gray-800 mb-5 font-semibold">What&apos;s your budget per person?</h4>
-              <p className="text-sm text-gray-600 mb-6">Select your comfortable spending range</p>
+              <h4 className="text-2xl font-serif font-light text-gray-900 mb-5">What&apos;s your budget per person?</h4>
+              <p className="text-sm text-gray-600 font-light mb-6">Select your comfortable spending range</p>
               <div className="grid grid-cols-1 gap-3 mb-6">
                 {[
-                  { value: 'budget', icon: '💰', label: 'Under $2,000' },
-                  { value: 'moderate', icon: '💵', label: '$2,000 - $5,000' },
-                  { value: 'premium', icon: '💎', label: '$5,000 - $10,000' },
-                  { value: 'luxuryBudget', icon: '👑', label: '$10,000+' }
+                  { value: 'budget', label: 'Under $2,000' },
+                  { value: 'moderate', label: '$2,000 - $5,000' },
+                  { value: 'premium', label: '$5,000 - $10,000' },
+                  { value: 'luxuryBudget', label: '$10,000+' }
                 ].map(option => (
                   <button
                     key={option.value}
-                    className={`bg-gray-50 border-2 ${selectedOption[4] === option.value ? 'border-blue-600 bg-gradient-to-br from-blue-600 to-purple-600 text-white' : 'border-gray-200'} p-4 rounded-xl cursor-pointer transition-all duration-200 text-left flex items-center gap-3 hover:border-blue-600 hover:bg-blue-50 hover:-translate-y-0.5 hover:shadow-lg`}
+                    className={`border ${selectedOption[4] === option.value ? 'border-black bg-black text-white' : 'border-gray-300 bg-white'} p-4 cursor-pointer transition-all duration-300 text-left hover:border-black font-light`}
                     onClick={() => selectOption(4, option.value)}
                   >
-                    <span className="text-2xl w-7 text-center">{option.icon}</span>
                     <span>{option.label}</span>
                   </button>
                 ))}
               </div>
               <div className="flex gap-3 mt-5">
                 <button
-                  className="flex-1 py-3.5 px-6 rounded-lg bg-gray-200 text-gray-700 font-semibold transition-all duration-200 hover:bg-gray-300"
+                  className="btn-luxury-outline flex-1"
                   onClick={() => goToQuestion(3)}
                 >
                   Back
                 </button>
                 <button
-                  className="flex-[2] py-3.5 px-6 rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 text-white font-semibold transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                  className="btn-luxury flex-[2] disabled:opacity-50 disabled:cursor-not-allowed"
                   disabled={!selectedOption[4]}
                   onClick={() => goToQuestion(5)}
                 >
@@ -308,34 +304,33 @@ export default function TripPlanner({ visible, onClose }: TripPlannerProps) {
           {/* Question 5: Group Size */}
           {currentQuestion === 5 && (
             <div className="animate-slideIn">
-              <h4 className="text-xl text-gray-800 mb-5 font-semibold">How many people are traveling?</h4>
-              <p className="text-sm text-gray-600 mb-6">Select your travel party size</p>
+              <h4 className="text-2xl font-serif font-light text-gray-900 mb-5">How many people are traveling?</h4>
+              <p className="text-sm text-gray-600 font-light mb-6">Select your travel party size</p>
               <div className="grid grid-cols-1 gap-3 mb-6">
                 {[
-                  { value: 'solo', icon: '🧳', label: 'Solo Traveler' },
-                  { value: 'couple', icon: '💑', label: 'Couple (2 people)' },
-                  { value: 'small', icon: '👥', label: 'Small Group (3-4 people)' },
-                  { value: 'large', icon: '👨‍👩‍👧‍👦', label: 'Large Group (5+ people)' }
+                  { value: 'solo', label: 'Solo Traveler' },
+                  { value: 'couple', label: 'Couple (2 people)' },
+                  { value: 'small', label: 'Small Group (3-4 people)' },
+                  { value: 'large', label: 'Large Group (5+ people)' }
                 ].map(option => (
                   <button
                     key={option.value}
-                    className={`bg-gray-50 border-2 ${selectedOption[5] === option.value ? 'border-blue-600 bg-gradient-to-br from-blue-600 to-purple-600 text-white' : 'border-gray-200'} p-4 rounded-xl cursor-pointer transition-all duration-200 text-left flex items-center gap-3 hover:border-blue-600 hover:bg-blue-50 hover:-translate-y-0.5 hover:shadow-lg`}
+                    className={`border ${selectedOption[5] === option.value ? 'border-black bg-black text-white' : 'border-gray-300 bg-white'} p-4 cursor-pointer transition-all duration-300 text-left hover:border-black font-light`}
                     onClick={() => selectOption(5, option.value)}
                   >
-                    <span className="text-2xl w-7 text-center">{option.icon}</span>
                     <span>{option.label}</span>
                   </button>
                 ))}
               </div>
               <div className="flex gap-3 mt-5">
                 <button
-                  className="flex-1 py-3.5 px-6 rounded-lg bg-gray-200 text-gray-700 font-semibold transition-all duration-200 hover:bg-gray-300"
+                  className="btn-luxury-outline flex-1"
                   onClick={() => goToQuestion(4)}
                 >
                   Back
                 </button>
                 <button
-                  className="flex-[2] py-3.5 px-6 rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 text-white font-semibold transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                  className="btn-luxury flex-[2] disabled:opacity-50 disabled:cursor-not-allowed"
                   disabled={!selectedOption[5]}
                   onClick={() => goToQuestion(6)}
                 >
@@ -348,34 +343,33 @@ export default function TripPlanner({ visible, onClose }: TripPlannerProps) {
           {/* Question 6: When */}
           {currentQuestion === 6 && (
             <div className="animate-slideIn">
-              <h4 className="text-xl text-gray-800 mb-5 font-semibold">When are you planning to travel?</h4>
-              <p className="text-sm text-gray-600 mb-6">Choose your preferred timeframe</p>
+              <h4 className="text-2xl font-serif font-light text-gray-900 mb-5">When are you planning to travel?</h4>
+              <p className="text-sm text-gray-600 font-light mb-6">Choose your preferred timeframe</p>
               <div className="grid grid-cols-1 gap-3 mb-6">
                 {[
-                  { value: 'soon', icon: '⚡', label: 'Within 1 month' },
-                  { value: 'months', icon: '📅', label: '1-3 months' },
-                  { value: 'halfyear', icon: '🗓️', label: '3-6 months' },
-                  { value: 'flexible', icon: '🌟', label: 'Flexible / Planning ahead' }
+                  { value: 'soon', label: 'Within 1 month' },
+                  { value: 'months', label: '1-3 months' },
+                  { value: 'halfyear', label: '3-6 months' },
+                  { value: 'flexible', label: 'Flexible / Planning ahead' }
                 ].map(option => (
                   <button
                     key={option.value}
-                    className={`bg-gray-50 border-2 ${selectedOption[6] === option.value ? 'border-blue-600 bg-gradient-to-br from-blue-600 to-purple-600 text-white' : 'border-gray-200'} p-4 rounded-xl cursor-pointer transition-all duration-200 text-left flex items-center gap-3 hover:border-blue-600 hover:bg-blue-50 hover:-translate-y-0.5 hover:shadow-lg`}
+                    className={`border ${selectedOption[6] === option.value ? 'border-black bg-black text-white' : 'border-gray-300 bg-white'} p-4 cursor-pointer transition-all duration-300 text-left hover:border-black font-light`}
                     onClick={() => selectOption(6, option.value)}
                   >
-                    <span className="text-2xl w-7 text-center">{option.icon}</span>
                     <span>{option.label}</span>
                   </button>
                 ))}
               </div>
               <div className="flex gap-3 mt-5">
                 <button
-                  className="flex-1 py-3.5 px-6 rounded-lg bg-gray-200 text-gray-700 font-semibold transition-all duration-200 hover:bg-gray-300"
+                  className="btn-luxury-outline flex-1"
                   onClick={() => goToQuestion(5)}
                 >
                   Back
                 </button>
                 <button
-                  className="flex-[2] py-3.5 px-6 rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 text-white font-semibold transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                  className="btn-luxury flex-[2] disabled:opacity-50 disabled:cursor-not-allowed"
                   disabled={!selectedOption[6]}
                   onClick={showCompletion}
                 >
@@ -388,32 +382,31 @@ export default function TripPlanner({ visible, onClose }: TripPlannerProps) {
           {/* Completion Screen */}
           {currentQuestion === 7 && (
             <div className="text-center p-10">
-              <div className="text-6xl mb-5">✅</div>
-              <h3 className="text-2xl text-gray-800 mb-4">Perfect! We&apos;ve Got Everything</h3>
-              <p className="text-gray-600 mb-6">Thank you for sharing your travel preferences. Here&apos;s a summary of your ideal trip:</p>
+              <h3 className="text-3xl font-serif font-light text-gray-900 mb-4">Perfect! We Have Everything</h3>
+              <p className="text-gray-600 font-light mb-6">Thank you for sharing your travel preferences. Here&apos;s a summary of your ideal journey:</p>
 
-              <div className="bg-gray-50 rounded-xl p-5 text-left my-5">
+              <div className="bg-light p-5 text-left my-5 border border-gray-200">
                 {Object.entries(answers).map(([key, value]) => {
                   if (!value) return null;
                   return (
                     <div key={key} className="mb-4 pb-4 border-b border-gray-200 last:mb-0 last:pb-0 last:border-0">
-                      <div className="text-sm text-gray-600 mb-1">{labels[key as keyof Answers]}</div>
-                      <div className="text-base text-gray-800 font-semibold">{answerLabels[value] || value}</div>
+                      <div className="elegant-text text-gray-500 mb-1">{labels[key as keyof Answers]}</div>
+                      <div className="text-base text-gray-900 font-light">{answerLabels[value] || value}</div>
                     </div>
                   );
                 })}
               </div>
 
-              <p className="mt-6 text-gray-600">Our travel experts will review your preferences and contact you within 24 hours with a personalized itinerary proposal.</p>
+              <p className="mt-6 text-gray-600 font-light text-sm">Our luxury travel consultants will review your preferences and contact you within 24 hours with a personalized itinerary proposal.</p>
 
               <button
-                className="w-full py-3.5 px-6 rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 text-white font-semibold transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg mt-5"
+                className="btn-luxury w-full mt-5"
                 onClick={submitForm}
               >
-                Send My Preferences
+                Submit Preferences
               </button>
               <button
-                className="w-full py-3.5 px-6 rounded-lg bg-gray-200 text-gray-700 font-semibold transition-all duration-200 hover:bg-gray-300 mt-2.5"
+                className="btn-luxury-outline w-full mt-2.5"
                 onClick={() => goToQuestion(1)}
               >
                 Start Over
