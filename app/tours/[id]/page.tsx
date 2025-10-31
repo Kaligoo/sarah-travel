@@ -4,6 +4,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import { use } from 'react';
+import { loadStripe } from '@stripe/stripe-js';
+
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
 
 const tours = [
   {
@@ -87,9 +90,46 @@ export default function TourPage({ params }: { params: Promise<{ id: string }> }
     );
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isProcessing, setIsProcessing] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    alert(`Booking submitted! Total: $${tour.price * formData.travelers}\nWe'll contact you shortly at ${formData.email}`);
+    setIsProcessing(true);
+
+    try {
+      // Create Stripe checkout session
+      const response = await fetch('/api/create-checkout-session', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          tourId: tour.id,
+          tourName: tour.name,
+          price: tour.price,
+          travelers: formData.travelers,
+          customerEmail: formData.email,
+          customerName: formData.name,
+        }),
+      });
+
+      const { sessionId, url, error } = await response.json();
+
+      if (error) {
+        alert(`Error: ${error}`);
+        setIsProcessing(false);
+        return;
+      }
+
+      // Redirect to Stripe Checkout
+      if (url) {
+        window.location.href = url;
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('An error occurred. Please try again.');
+      setIsProcessing(false);
+    }
   };
 
   return (
@@ -281,9 +321,10 @@ export default function TourPage({ params }: { params: Promise<{ id: string }> }
                     </div>
                     <button
                       type="submit"
-                      className="w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 transition"
+                      disabled={isProcessing}
+                      className="w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                      Submit Booking Request
+                      {isProcessing ? 'Processing...' : 'Proceed to Secure Payment'}
                     </button>
                     <button
                       type="button"
