@@ -70,6 +70,7 @@ const tours = [
 
 export default function Home() {
   const [selectedTour, setSelectedTour] = useState<number | null>(null);
+  const [plannerVisible, setPlannerVisible] = useState(false);
 
   return (
     <div className="min-h-screen">
@@ -80,10 +81,18 @@ export default function Home() {
             <div className="flex items-center">
               <h1 className="text-2xl font-bold text-indigo-600">Sarah Kahane Travel</h1>
             </div>
-            <div className="hidden md:flex space-x-8">
-              <Link href="#tours" className="text-gray-700 hover:text-indigo-600 transition">Tours</Link>
-              <Link href="#about" className="text-gray-700 hover:text-indigo-600 transition">About</Link>
-              <Link href="#contact" className="text-gray-700 hover:text-indigo-600 transition">Contact</Link>
+            <div className="flex items-center space-x-8">
+              <div className="hidden md:flex space-x-8">
+                <Link href="#tours" className="text-gray-700 hover:text-indigo-600 transition">Tours</Link>
+                <Link href="#about" className="text-gray-700 hover:text-indigo-600 transition">About</Link>
+                <Link href="#contact" className="text-gray-700 hover:text-indigo-600 transition">Contact</Link>
+              </div>
+              <button
+                onClick={() => setPlannerVisible(true)}
+                className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-4 py-2 rounded-lg font-semibold hover:shadow-lg transition-all hover:scale-105"
+              >
+                ✈️ Plan Your Trip
+              </button>
             </div>
           </div>
         </div>
@@ -245,7 +254,7 @@ export default function Home() {
       </footer>
 
       {/* Trip Planner Questionnaire */}
-      <TripPlanner />
+      <TripPlanner visible={plannerVisible} onClose={() => setPlannerVisible(false)} />
     </div>
   );
 }

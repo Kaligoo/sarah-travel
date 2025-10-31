@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 interface Answers {
   travelType: string;
@@ -58,8 +58,12 @@ const answerLabels: Record<string, string> = {
   'flexible': 'Flexible / Planning ahead'
 };
 
-export default function TripPlanner() {
-  const [visible, setVisible] = useState(false);
+interface TripPlannerProps {
+  visible: boolean;
+  onClose: () => void;
+}
+
+export default function TripPlanner({ visible, onClose }: TripPlannerProps) {
   const [currentQuestion, setCurrentQuestion] = useState(1);
   const [answers, setAnswers] = useState<Answers>({
     travelType: '',
@@ -70,19 +74,6 @@ export default function TripPlanner() {
     when: ''
   });
   const [selectedOption, setSelectedOption] = useState<Record<number, string>>({});
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 400) {
-        setVisible(true);
-      } else {
-        setVisible(false);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   const selectOption = (questionNum: number, value: string) => {
     const answerKey = questionMap[questionNum];
@@ -113,28 +104,34 @@ export default function TripPlanner() {
         when: ''
       });
       setSelectedOption({});
+      onClose();
     }, 2000);
-  };
-
-  const scrollToShow = () => {
-    window.scrollTo({ top: 500, behavior: 'smooth' });
   };
 
   const progress = currentQuestion <= 6 ? (currentQuestion / 6) * 100 : 100;
 
   return (
     <>
-      {/* Scroll indicator button */}
-      <div
-        className={`fixed left-5 top-1/2 -translate-y-1/2 bg-gradient-to-br from-blue-600 to-purple-600 text-white px-5 py-4 rounded-xl cursor-pointer transition-all duration-300 z-[999] shadow-lg hover:scale-105 ${visible ? 'opacity-0 pointer-events-none' : ''}`}
-        onClick={scrollToShow}
-      >
-        <strong>✈️ Plan Your Trip</strong>
-      </div>
+      {/* Backdrop */}
+      {visible && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 z-[999] transition-opacity"
+          onClick={onClose}
+        />
+      )}
 
       {/* Questionnaire Panel */}
       <div className={`fixed top-0 h-screen w-[380px] bg-white shadow-2xl transition-all duration-400 z-[1000] flex flex-col ${visible ? 'left-0' : '-left-[400px]'} max-md:w-full max-md:${visible ? 'left-0' : '-left-full'}`}>
-        <div className="bg-gradient-to-br from-blue-600 to-purple-600 text-white p-8">
+        <div className="bg-gradient-to-br from-blue-600 to-purple-600 text-white p-8 relative">
+          <button
+            onClick={onClose}
+            className="absolute top-4 right-4 text-white hover:bg-white hover:bg-opacity-20 rounded-full p-2 transition-all"
+            aria-label="Close"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
           <h3 className="text-2xl mb-2.5">Custom Trip Planner</h3>
           <p className="text-[0.95rem] opacity-95">Let&apos;s design your perfect journey together</p>
         </div>
