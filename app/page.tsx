@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
+import TripPlanner from './components/TripPlanner';
 
 const tours = [
   {
@@ -242,6 +243,9 @@ export default function Home() {
           <p className="text-gray-500 mt-8">© 2025 Sarah Kahane Travel. All rights reserved.</p>
         </div>
       </footer>
+
+      {/* Trip Planner Questionnaire */}
+      <TripPlanner />
     </div>
   );
 }
