@@ -99,7 +99,7 @@ export default function Home() {
                 <Link href="#destinations" className="elegant-text text-gray-800 hover:text-secondary transition">Destinations</Link>
                 <Link href="#tours" className="elegant-text text-gray-800 hover:text-secondary transition">Journeys</Link>
                 <Link href="#about" className="elegant-text text-gray-800 hover:text-secondary transition">About</Link>
-                <Link href="#contact" className="elegant-text text-gray-800 hover:text-secondary transition">Contact</Link>
+                <Link href="/contact" className="elegant-text text-gray-800 hover:text-secondary transition">Contact</Link>
               </div>
               <button
                 onClick={() => setPlannerVisible(true)}
